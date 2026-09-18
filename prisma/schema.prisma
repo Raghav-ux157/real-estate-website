@@ -1,0 +1,107 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  role          String    @default("USER") // Changed to string for sqlite simplicity
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // Agent Relations
+  assignedLeads Lead[]    @relation("AgentLeads")
+}
+
+model Property {
+  id            String    @id @default(cuid())
+  title         String
+  slug          String    @unique
+  description   String?
+  propertyType  String    // Apartment, Villa, Plot, Commercial
+  intent        String    // Buy, Rent
+  price         Float
+  areaSqft      Float?
+  bedrooms      Int?
+  bathrooms     Int?
+  location      String
+  status        String    @default("AVAILABLE") // Changed to string
+  
+  images        String    // JSON stringified array for SQLite
+  amenities     String    // JSON stringified array for SQLite
+  
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  leads         Lead[]
+  siteVisits    SiteVisit[]
+}
+
+
+model Lead {
+  id            String    @id @default(cuid())
+  name          String
+  phone         String
+  email         String?
+  
+  // Qualification
+  intent        String?   // Buy, Rent, Sell, Invest
+  propertyType  String?
+  budget        String?
+  timeline      String?
+  
+  // CRM
+  source        String?   // Google, Direct, WhatsApp, PropertyPage
+  score         Int       @default(0)
+  status        String    @default("NEW") // Changed to String
+  
+  agentId       String?
+  agent         User?     @relation("AgentLeads", fields: [agentId], references: [id])
+  
+  propertyId    String?
+  property      Property? @relation(fields: [propertyId], references: [id])
+  
+  activities    LeadActivity[]
+  siteVisits    SiteVisit[]
+
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model LeadActivity {
+  id            String    @id @default(cuid())
+  type          String    // NOTE, CALL, WHATSAPP, EMAIL, STATUS_CHANGE
+  content       String?
+  
+  leadId        String
+  lead          Lead      @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  
+  createdAt     DateTime  @default(now())
+}
+
+model SiteVisit {
+  id            String    @id @default(cuid())
+  scheduledAt   DateTime
+  status        String    @default("SCHEDULED")
+  notes         String?
+
+  leadId        String
+  lead          Lead      @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  
+  propertyId    String
+  property      Property  @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
