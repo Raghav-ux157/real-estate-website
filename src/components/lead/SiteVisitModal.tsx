@@ -57,15 +57,32 @@ export function SiteVisitModal({
         })
       });
 
-      const data = await res.json();
-      if (data.success) {
-        setSubmitted(true);
+      if (res.ok) {
+        const data = await res.json();
+        if (data.success) {
+          setSubmitted(true);
+          setLoading(false);
+          return;
+        }
       }
     } catch (err) {
-      console.error("Booking error:", err);
-    } finally {
-      setLoading(false);
+      console.warn("API route unavailable, using client store:", err);
     }
+
+    // Fallback for static GitHub Pages
+    const { createSiteVisit } = await import("@/lib/data");
+    createSiteVisit({
+      leadName: formData.name,
+      leadPhone: formData.phone,
+      leadEmail: formData.email,
+      propertyId,
+      propertyTitle,
+      scheduledDate: formData.scheduledDate || "This Weekend",
+      scheduledTime: formData.scheduledTime,
+      notes: formData.notes
+    });
+    setSubmitted(true);
+    setLoading(false);
   };
 
   const handleReset = () => {

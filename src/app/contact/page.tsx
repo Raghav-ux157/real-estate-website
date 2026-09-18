@@ -38,15 +38,31 @@ export default function ContactPage() {
         })
       });
 
-      const data = await res.json();
-      if (data.success) {
-        setSubmitted(true);
+      if (res.ok) {
+        const data = await res.json();
+        if (data.success) {
+          setSubmitted(true);
+          setLoading(false);
+          return;
+        }
       }
     } catch (err) {
-      console.error("Contact error:", err);
-    } finally {
-      setLoading(false);
+      console.warn("API route unavailable, using client store:", err);
     }
+
+    // Fallback for static GitHub Pages
+    const { createLead } = await import("@/lib/data");
+    createLead({
+      name: formData.name,
+      phone: formData.phone,
+      email: formData.email,
+      intent: "Buy",
+      source: "Contact Us Page",
+      timeline: "Immediately",
+      notes: `Subject: ${formData.subject}. Message: ${formData.message}`
+    });
+    setSubmitted(true);
+    setLoading(false);
   };
 
   return (

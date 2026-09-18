@@ -61,19 +61,30 @@ export function LeadCaptureForm({
         })
       });
 
-      const data = await res.json();
-      if (data.success) {
-        setIsSubmitted(true);
-        if (onSuccess) onSuccess();
-      } else {
-        setError(data.error || "Failed to submit. Please try again.");
+      if (res.ok) {
+        const data = await res.json();
+        if (data.success) {
+          setIsSubmitted(true);
+          if (onSuccess) onSuccess();
+          setLoading(false);
+          return;
+        }
       }
     } catch (err) {
-      console.error("Submission error:", err);
-      setError("Network error. Please try again or WhatsApp us directly.");
-    } finally {
-      setLoading(false);
+      console.warn("API route unavailable, using client store:", err);
     }
+
+    // Fallback for static hosting (GitHub Pages)
+    const { createLead } = await import("@/lib/data");
+    createLead({
+      ...formData,
+      source,
+      propertyId,
+      propertyTitle: propertyTitle || (propertyId ? `Property ID: ${propertyId}` : undefined)
+    });
+    setIsSubmitted(true);
+    if (onSuccess) onSuccess();
+    setLoading(false);
   };
 
   if (isSubmitted) {

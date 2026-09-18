@@ -447,17 +447,28 @@ const initialSiteVisits: SiteVisit[] = [
   }
 ];
 
+export interface EstateDatabase {
+  properties: Property[];
+  leads: Lead[];
+  siteVisits: SiteVisit[];
+}
+
 // Global in-memory cache to persist data across Next.js API calls in development
 declare global {
   // eslint-disable-next-line no-var
-  var __estateModernDb: {
-    properties: Property[];
-    leads: Lead[];
-    siteVisits: SiteVisit[];
-  } | undefined;
+  var __estateModernDb: EstateDatabase | undefined;
 }
 
-function getDatabase() {
+function getDatabase(): EstateDatabase {
+  if (typeof window !== "undefined") {
+    try {
+      const stored = localStorage.getItem("__estateModernDb_v1");
+      if (stored) {
+        return JSON.parse(stored) as EstateDatabase;
+      }
+    } catch (e) {}
+  }
+
   if (!global.__estateModernDb) {
     global.__estateModernDb = {
       properties: [...initialProperties],
@@ -466,6 +477,14 @@ function getDatabase() {
     };
   }
   return global.__estateModernDb;
+}
+
+function persistDatabase(db: EstateDatabase) {
+  if (typeof window !== "undefined") {
+    try {
+      localStorage.setItem("__estateModernDb_v1", JSON.stringify(db));
+    } catch (e) {}
+  }
 }
 
 // ---------------- Property Handlers ----------------
@@ -543,7 +562,7 @@ export function getPropertyById(idOrSlug: string): Property | undefined {
   if (!isNaN(numIndex) && numIndex >= 1 && numIndex <= db.properties.length) {
     return db.properties[numIndex - 1];
   }
-  return db.properties.find(p => p.id === idOrSlug || p.slug === idOrSlug);
+  return db.properties.find((p: Property) => p.id === idOrSlug || p.slug === idOrSlug);
 }
 
 export function createProperty(data: Partial<Property>): Property {
@@ -586,6 +605,7 @@ export function createProperty(data: Partial<Property>): Property {
   };
 
   db.properties.unshift(newProp);
+  persistDatabase(db);
   return newProp;
 }
 
@@ -594,6 +614,7 @@ export function updateProperty(id: string, updates: Partial<Property>): Property
   const index = db.properties.findIndex(p => p.id === id);
   if (index === -1) return null;
   db.properties[index] = { ...db.properties[index], ...updates };
+  persistDatabase(db);
   return db.properties[index];
 }
 
@@ -601,6 +622,7 @@ export function deleteProperty(id: string): boolean {
   const db = getDatabase();
   const initialLength = db.properties.length;
   db.properties = db.properties.filter(p => p.id !== id);
+  persistDatabase(db);
   return db.properties.length < initialLength;
 }
 
@@ -648,6 +670,7 @@ export function createLead(data: Partial<Lead>): Lead {
   };
 
   db.leads.unshift(newLead);
+  persistDatabase(db);
   return newLead;
 }
 
@@ -656,6 +679,7 @@ export function updateLeadStatus(id: string, status: Lead["status"]): Lead | nul
   const lead = db.leads.find(l => l.id === id);
   if (!lead) return null;
   lead.status = status;
+  persistDatabase(db);
   return lead;
 }
 
@@ -699,6 +723,7 @@ export function createSiteVisit(data: Partial<SiteVisit>): SiteVisit {
     notes: `Scheduled visit on ${newVisit.scheduledDate} at ${newVisit.scheduledTime}`
   });
 
+  persistDatabase(db);
   return newVisit;
 }
 
@@ -707,6 +732,7 @@ export function updateSiteVisitStatus(id: string, status: SiteVisit["status"]): 
   const visit = db.siteVisits.find(v => v.id === id);
   if (!visit) return null;
   visit.status = status;
+  persistDatabase(db);
   return visit;
 }
 
