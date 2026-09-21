@@ -41,6 +41,7 @@ export function Footer() {
               <li><Link href="/about" className="hover:text-primary transition-colors">About EstateModern</Link></li>
               <li><Link href="/contact" className="hover:text-primary transition-colors">Contact Our Advisors</Link></li>
               <li><Link href="/admin" className="hover:text-primary transition-colors">Admin CRM Portal</Link></li>
+              <li><Link href="/preview" className="hover:text-primary transition-colors flex items-center gap-1.5 text-primary/80"><span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>Device Switcher</Link></li>
             </ul>
           </div>
 

@@ -8,8 +8,9 @@ import { MobileCTAs } from "@/components/layout/MobileCTAs";
 export function PublicLayoutWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const isAdmin = pathname?.startsWith("/admin");
+  const isPreview = pathname?.startsWith("/preview");
 
-  if (isAdmin) {
+  if (isAdmin || isPreview) {
     return <>{children}</>;
   }
 

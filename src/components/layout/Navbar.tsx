@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { Menu, Phone, ShieldCheck, Calendar, Home, Building2, Tag, Info, Mail, MessageCircle } from "lucide-react";
+import { Menu, Phone, ShieldCheck, Calendar, Home, Building2, Tag, Info, Mail, MessageCircle, Smartphone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { SiteVisitModal } from "@/components/lead/SiteVisitModal";
@@ -126,6 +126,7 @@ export function Navbar() {
                       { href: "/about", label: "About EstateModern", icon: Info },
                       { href: "/contact", label: "Contact Advisors", icon: Mail },
                       { href: "/admin", label: "Admin CRM Portal", icon: ShieldCheck, badge: "Advisor" },
+                      { href: "/preview", label: "Device Switcher", icon: Smartphone, badge: "Mobile / Tab / PC" },
                     ].map((item) => {
                       const Icon = item.icon;
                       return (

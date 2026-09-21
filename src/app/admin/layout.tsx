@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { 
   LayoutDashboard, Users, Building, Calendar, PhoneCall, Settings, 
-  LogOut, Bell, Search, BarChart3, ExternalLink, Menu, Sparkles 
+  LogOut, Bell, Search, BarChart3, ExternalLink, Menu, Sparkles, Smartphone 
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -57,6 +57,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       </div>
       
       <div className="p-4 border-t border-border/50 space-y-2">
+        <Link href="/preview" target="_blank">
+          <Button variant="outline" size="sm" className="w-full justify-start text-xs border-border/60 hover:border-primary/50 text-foreground">
+            <Smartphone className="w-3.5 h-3.5 mr-2 text-primary" /> Device Switcher
+          </Button>
+        </Link>
         <Link href="/" target="_blank">
           <Button variant="outline" size="sm" className="w-full justify-start text-xs border-border/60">
             <ExternalLink className="w-3.5 h-3.5 mr-2 text-primary" /> View Live Website
