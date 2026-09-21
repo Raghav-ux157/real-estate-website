@@ -66,71 +66,71 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="pt-28 pb-20 min-h-screen bg-background">
+    <div className="pt-24 md:pt-28 pb-28 md:pb-20 min-h-screen bg-background">
       <div className="container mx-auto px-4 md:px-8 max-w-6xl">
         
         {/* Header */}
-        <div className="mb-14 text-center max-w-2xl mx-auto">
-          <h1 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4">
+        <div className="mb-8 md:mb-14 text-center max-w-2xl mx-auto">
+          <h1 className="text-2xl sm:text-4xl md:text-5xl font-heading font-bold text-foreground mb-2 sm:mb-4">
             Connect with Our Advisors
           </h1>
-          <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
+          <p className="text-muted-foreground text-xs sm:text-sm md:text-base leading-relaxed">
             Whether you are planning to purchase, lease, or divest a high-value property in Jaipur, our team is ready to assist with absolute discretion.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
           
           {/* Left Column: Office info and details */}
-          <div className="space-y-8">
-            <div className="p-8 rounded-3xl bg-card border border-border/70 shadow-xl space-y-6">
-              <h3 className="font-heading font-bold text-2xl text-foreground">Jaipur Headquarters</h3>
+          <div className="space-y-6 md:space-y-8">
+            <div className="p-5 sm:p-8 rounded-2xl md:rounded-3xl bg-card border border-border/70 shadow-xl space-y-5 sm:space-y-6">
+              <h3 className="font-heading font-bold text-xl sm:text-2xl text-foreground">Jaipur Headquarters</h3>
               
-              <div className="space-y-5 text-sm">
-                <div className="flex items-start gap-3.5">
-                  <div className="p-2.5 rounded-xl bg-primary/10 text-primary shrink-0">
-                    <MapPin className="w-5 h-5" />
+              <div className="space-y-4 sm:space-y-5 text-sm">
+                <div className="flex items-start gap-3 sm:gap-3.5">
+                  <div className="p-2 sm:p-2.5 rounded-xl bg-primary/10 text-primary shrink-0">
+                    <MapPin className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
                   <div>
-                    <p className="font-semibold text-foreground">Office Address</p>
-                    <p className="text-muted-foreground mt-0.5 leading-relaxed">
+                    <p className="font-semibold text-xs sm:text-sm text-foreground">Office Address</p>
+                    <p className="text-muted-foreground text-xs sm:text-sm mt-0.5 leading-relaxed">
                       Level 4, Modern Tower, C-Scheme<br/>
                       Jaipur, Rajasthan 302001, India
                     </p>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3.5">
-                  <div className="p-2.5 rounded-xl bg-primary/10 text-primary shrink-0">
-                    <Phone className="w-5 h-5" />
+                <div className="flex items-start gap-3 sm:gap-3.5">
+                  <div className="p-2 sm:p-2.5 rounded-xl bg-primary/10 text-primary shrink-0">
+                    <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
                   <div>
-                    <p className="font-semibold text-foreground">Phone & WhatsApp</p>
-                    <a href="tel:+919876543210" className="text-muted-foreground hover:text-primary transition-colors block mt-0.5">
+                    <p className="font-semibold text-xs sm:text-sm text-foreground">Phone & WhatsApp</p>
+                    <a href="tel:+919876543210" className="text-muted-foreground text-xs sm:text-sm hover:text-primary transition-colors block mt-0.5">
                       +91 98765 43210
                     </a>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3.5">
-                  <div className="p-2.5 rounded-xl bg-primary/10 text-primary shrink-0">
-                    <Mail className="w-5 h-5" />
+                <div className="flex items-start gap-3 sm:gap-3.5">
+                  <div className="p-2 sm:p-2.5 rounded-xl bg-primary/10 text-primary shrink-0">
+                    <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
                   <div>
-                    <p className="font-semibold text-foreground">Email Inquiries</p>
-                    <a href="mailto:contact@estatemodern.com" className="text-muted-foreground hover:text-primary transition-colors block mt-0.5">
+                    <p className="font-semibold text-xs sm:text-sm text-foreground">Email Inquiries</p>
+                    <a href="mailto:contact@estatemodern.com" className="text-muted-foreground text-xs sm:text-sm hover:text-primary transition-colors block mt-0.5">
                       contact@estatemodern.com
                     </a>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3.5">
-                  <div className="p-2.5 rounded-xl bg-primary/10 text-primary shrink-0">
-                    <Clock className="w-5 h-5" />
+                <div className="flex items-start gap-3 sm:gap-3.5">
+                  <div className="p-2 sm:p-2.5 rounded-xl bg-primary/10 text-primary shrink-0">
+                    <Clock className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
                   <div>
-                    <p className="font-semibold text-foreground">Consultation Hours</p>
-                    <p className="text-muted-foreground mt-0.5">
+                    <p className="font-semibold text-xs sm:text-sm text-foreground">Consultation Hours</p>
+                    <p className="text-muted-foreground text-xs sm:text-sm mt-0.5">
                       Monday to Saturday: 9:30 AM – 7:30 PM<br/>
                       Sunday: By Prior Appointment Only
                     </p>
@@ -138,7 +138,7 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-border/60 flex gap-3">
+              <div className="pt-3 sm:pt-4 border-t border-border/60 flex gap-2.5 sm:gap-3">
                 <a
                   href={`https://wa.me/919876543210?text=${encodeURIComponent(
                     "Hello EstateModern, I would like to schedule an in-person meeting at your C-Scheme office."
@@ -147,13 +147,13 @@ export default function ContactPage() {
                   rel="noopener noreferrer"
                   className="flex-1"
                 >
-                  <Button className="w-full bg-[#25D366] hover:bg-[#1EBE5D] text-white text-xs font-semibold h-11">
-                    <MessageCircle className="w-4 h-4 mr-2" /> WhatsApp Us
+                  <Button className="w-full bg-[#25D366] hover:bg-[#1EBE5D] text-white text-xs font-semibold h-11 rounded-xl">
+                    <MessageCircle className="w-4 h-4 mr-1.5" /> WhatsApp Us
                   </Button>
                 </a>
                 <a href="tel:+919876543210" className="flex-1">
-                  <Button variant="outline" className="w-full text-xs font-semibold h-11 border-border/70">
-                    <Phone className="w-4 h-4 mr-2 text-primary" /> Direct Call
+                  <Button variant="outline" className="w-full text-xs font-semibold h-11 border-border/70 rounded-xl">
+                    <Phone className="w-4 h-4 mr-1.5 text-primary" /> Direct Call
                   </Button>
                 </a>
               </div>
@@ -162,8 +162,8 @@ export default function ContactPage() {
 
           {/* Right Column: Contact Inquiry Form */}
           <div>
-            <Card className="bg-card border-border/70 shadow-2xl rounded-3xl overflow-hidden">
-              <CardContent className="p-6 md:p-8">
+            <Card className="bg-card border-border/70 shadow-2xl rounded-2xl md:rounded-3xl overflow-hidden">
+              <CardContent className="p-4 sm:p-6 md:p-8">
                 {submitted ? (
                   <div className="py-12 text-center space-y-4 animate-in fade-in zoom-in duration-300">
                     <div className="w-16 h-16 bg-primary/20 text-primary rounded-full flex items-center justify-center mx-auto">

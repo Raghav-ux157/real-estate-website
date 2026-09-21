@@ -72,11 +72,11 @@ export function PropertyDetailClient({ id }: { id: string }) {
   );
 
   return (
-    <div className="pt-28 pb-20 min-h-screen bg-background">
+    <div className="pt-24 md:pt-28 pb-28 md:pb-20 min-h-screen bg-background">
       <div className="container mx-auto px-4 md:px-8 max-w-6xl">
         
         {/* Breadcrumb & Navigation */}
-        <div className="mb-6 flex items-center justify-between">
+        <div className="mb-4 sm:mb-6 flex items-center justify-between">
           <Link 
             href="/properties" 
             className="inline-flex items-center gap-1.5 text-xs font-semibold text-muted-foreground hover:text-primary transition-colors"
@@ -84,46 +84,46 @@ export function PropertyDetailClient({ id }: { id: string }) {
             <ArrowLeft className="w-4 h-4" /> Back to All Properties
           </Link>
 
-          <Badge variant="outline" className="text-xs bg-secondary/40 border-border">
-            Listing ID: {property.id}
+          <Badge variant="outline" className="text-[11px] sm:text-xs bg-secondary/40 border-border">
+            ID: {property.id}
           </Badge>
         </div>
 
         {/* Header Section */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-8">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 sm:gap-6 mb-6 md:mb-8">
           <div>
-            <div className="flex flex-wrap gap-2 mb-3">
-              <Badge className="bg-primary text-primary-foreground font-semibold shadow-md">
+            <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-2 sm:mb-3">
+              <Badge className="bg-primary text-primary-foreground font-semibold shadow-md text-xs py-0.5">
                 For {property.intent}
               </Badge>
-              <Badge variant="outline" className="border-border bg-card">
+              <Badge variant="outline" className="border-border bg-card text-xs py-0.5">
                 {property.propertyType}
               </Badge>
-              <Badge variant="outline" className="border-emerald-500/30 text-emerald-500 bg-emerald-500/10">
+              <Badge variant="outline" className="border-emerald-500/30 text-emerald-500 bg-emerald-500/10 text-xs py-0.5">
                 Verified Listing
               </Badge>
             </div>
-            <h1 className="text-3xl md:text-5xl font-heading font-bold text-foreground mb-3 tracking-tight">
+            <h1 className="text-2xl sm:text-3xl md:text-5xl font-heading font-bold text-foreground mb-2 sm:mb-3 tracking-tight">
               {property.title}
             </h1>
-            <div className="flex items-center gap-2 text-muted-foreground text-sm md:text-base">
-              <MapPin className="w-4 h-4 text-primary shrink-0" /> {property.location}
+            <div className="flex items-center gap-1.5 sm:gap-2 text-muted-foreground text-xs sm:text-sm md:text-base">
+              <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary shrink-0" /> {property.location}
             </div>
           </div>
 
-          <div className="text-left md:text-right w-full md:w-auto flex flex-row md:flex-col justify-between items-center md:items-end border-t md:border-t-0 pt-4 md:pt-0 border-border/50">
+          <div className="text-left md:text-right w-full md:w-auto flex flex-row md:flex-col justify-between items-center md:items-end border-t md:border-t-0 pt-3 sm:pt-4 md:pt-0 border-border/50">
             <div className="mb-0 md:mb-3">
-              <p className="text-xs text-muted-foreground mb-0.5">Price</p>
-              <p className="text-3xl md:text-4xl font-heading font-bold text-primary">{property.displayPrice}</p>
+              <p className="text-[10px] sm:text-xs text-muted-foreground mb-0.5">Price</p>
+              <p className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-primary">{property.displayPrice}</p>
             </div>
 
-            <div className="flex gap-2.5">
+            <div className="flex gap-2">
               <Button 
                 variant="outline" 
                 size="icon" 
                 onClick={handleShare}
                 aria-label="Share property"
-                className={`rounded-full border-border/70 relative transition-colors ${copied ? 'border-primary text-primary' : ''}`}
+                className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full border-border/70 relative transition-colors ${copied ? 'border-primary text-primary' : ''}`}
               >
                 <Share2 className="w-4 h-4" />
                 {copied && (
@@ -137,7 +137,7 @@ export function PropertyDetailClient({ id }: { id: string }) {
                 size="icon" 
                 onClick={() => setFavorited(!favorited)}
                 aria-label="Favorite property"
-                className={`rounded-full border-border/70 transition-colors ${favorited ? 'border-rose-500 text-rose-500 fill-rose-500' : ''}`}
+                className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full border-border/70 transition-colors ${favorited ? 'border-rose-500 text-rose-500 fill-rose-500' : ''}`}
               >
                 <Heart className={`w-4 h-4 ${favorited ? 'fill-rose-500 text-rose-500' : ''}`} />
               </Button>
@@ -145,89 +145,103 @@ export function PropertyDetailClient({ id }: { id: string }) {
           </div>
         </div>
 
-        {/* Bento Image Gallery */}
-        <div className="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-3.5 h-[55vh] min-h-[380px] max-h-[550px] mb-12 rounded-3xl overflow-hidden shadow-2xl bg-muted">
-          <div 
-            className="md:col-span-2 md:row-span-2 relative cursor-pointer group overflow-hidden"
-            onClick={() => { setActiveImageIndex(0); setGalleryOpen(true); }}
-          >
-            <Image 
-              src={property.images[0]} 
-              alt={`${property.title} Main Exterior`} 
-              fill 
-              priority
-              className="object-cover group-hover:scale-105 transition-transform duration-700" 
-            />
-            <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors"></div>
-          </div>
-
-          {property.images.slice(1, 4).map((imgUrl, idx) => (
+        {/* Image Gallery */}
+        <div className="relative h-[34vh] min-h-[250px] sm:h-[45vh] md:h-[55vh] md:min-h-[380px] max-h-[550px] mb-8 md:mb-12 rounded-2xl md:rounded-3xl overflow-hidden shadow-xl md:shadow-2xl bg-muted">
+          <div className="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-3.5 h-full">
             <div 
-              key={idx} 
-              className="relative hidden md:block cursor-pointer group overflow-hidden"
-              onClick={() => { setActiveImageIndex(idx + 1); setGalleryOpen(true); }}
+              className="md:col-span-2 md:row-span-2 relative cursor-pointer group overflow-hidden h-full"
+              onClick={() => { setActiveImageIndex(0); setGalleryOpen(true); }}
             >
               <Image 
-                src={imgUrl} 
-                alt={`${property.title} Photo ${idx + 2}`} 
+                src={property.images[0]} 
+                alt={`${property.title} Main Exterior`} 
                 fill 
+                priority
                 className="object-cover group-hover:scale-105 transition-transform duration-700" 
               />
-              <div className="absolute inset-0 bg-black/15 group-hover:bg-black/0 transition-colors"></div>
+              <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors"></div>
             </div>
-          ))}
 
-          <div 
-            className="relative hidden md:block group cursor-pointer overflow-hidden"
-            onClick={() => { setActiveImageIndex(0); setGalleryOpen(true); }}
-          >
-            <Image 
-              src={property.images[0]} 
-              alt="More photos" 
-              fill 
-              className="object-cover opacity-50 group-hover:opacity-40 transition-opacity" 
-            />
-            <div className="absolute inset-0 flex items-center justify-center bg-black/50 backdrop-blur-xs group-hover:bg-black/40 transition-colors">
-              <span className="text-white font-semibold text-base flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-primary" /> View Gallery ({property.images.length})
-              </span>
+            {property.images.slice(1, 4).map((imgUrl, idx) => (
+              <div 
+                key={idx} 
+                className="relative hidden md:block cursor-pointer group overflow-hidden"
+                onClick={() => { setActiveImageIndex(idx + 1); setGalleryOpen(true); }}
+              >
+                <Image 
+                  src={imgUrl} 
+                  alt={`${property.title} Photo ${idx + 2}`} 
+                  fill 
+                  className="object-cover group-hover:scale-105 transition-transform duration-700" 
+                />
+                <div className="absolute inset-0 bg-black/15 group-hover:bg-black/0 transition-colors"></div>
+              </div>
+            ))}
+
+            <div 
+              className="relative hidden md:block group cursor-pointer overflow-hidden"
+              onClick={() => { setActiveImageIndex(0); setGalleryOpen(true); }}
+            >
+              <Image 
+                src={property.images[0]} 
+                alt="More photos" 
+                fill 
+                className="object-cover opacity-50 group-hover:opacity-40 transition-opacity" 
+              />
+              <div className="absolute inset-0 flex items-center justify-center bg-black/50 backdrop-blur-xs group-hover:bg-black/40 transition-colors">
+                <span className="text-white font-semibold text-base flex items-center gap-2">
+                  <Sparkles className="w-4 h-4 text-primary" /> View Gallery ({property.images.length})
+                </span>
+              </div>
             </div>
+          </div>
+
+          {/* Floating photo count pill on mobile */}
+          <div className="absolute bottom-3 right-3 md:hidden z-10">
+            <button
+              type="button"
+              onClick={() => { setActiveImageIndex(0); setGalleryOpen(true); }}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/70 backdrop-blur-md text-white text-xs font-semibold shadow-lg active:scale-95 transition-all"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-primary" />
+              <span>1 of {property.images.length} Photos</span>
+            </button>
           </div>
         </div>
 
         {/* Main Content Area */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
           
           {/* Left Column (Details, Specs, Amenities) */}
-          <div className="lg:col-span-2 space-y-10">
+          <div className="lg:col-span-2 space-y-8 md:space-y-10">
             
             {/* Key Specs Bar */}
-            <div className="grid grid-cols-3 gap-4 py-6 border-y border-border/60 bg-card/40 rounded-2xl px-6">
-              <div className="flex items-center gap-3">
-                <div className="p-3 bg-secondary/80 rounded-xl text-primary shrink-0">
-                  <Bed className="w-5 h-5" />
+            <div className="grid grid-cols-3 gap-1.5 sm:gap-4 py-3.5 sm:py-6 px-3 sm:px-6 border-y border-border/60 bg-card/40 rounded-2xl">
+              <div className="flex items-center gap-2 sm:gap-3">
+                <div className="p-2 sm:p-3 bg-secondary/80 rounded-xl text-primary shrink-0">
+                  <Bed className="w-4 h-4 sm:w-5 sm:h-5" />
                 </div>
                 <div>
-                  <p className="text-xs text-muted-foreground">Bedrooms</p>
-                  <p className="font-semibold text-base text-foreground">{property.bedrooms} Beds</p>
+                  <p className="text-[10px] sm:text-xs text-muted-foreground">Bedrooms</p>
+                  <p className="font-semibold text-xs sm:text-base text-foreground leading-tight">{property.bedrooms} Beds</p>
                 </div>
               </div>
-              <div className="flex items-center gap-3">
-                <div className="p-3 bg-secondary/80 rounded-xl text-primary shrink-0">
-                  <Bath className="w-5 h-5" />
+              <div className="flex items-center gap-2 sm:gap-3">
+                <div className="p-2 sm:p-3 bg-secondary/80 rounded-xl text-primary shrink-0">
+                  <Bath className="w-4 h-4 sm:w-5 sm:h-5" />
                 </div>
                 <div>
-                  <p className="text-xs text-muted-foreground">Bathrooms</p>
-                  <p className="font-semibold text-base text-foreground">{property.bathrooms} Baths</p>
+                  <p className="text-[10px] sm:text-xs text-muted-foreground">Bathrooms</p>
+                  <p className="font-semibold text-xs sm:text-base text-foreground leading-tight">{property.bathrooms} Baths</p>
                 </div>
               </div>
-              <div className="flex items-center gap-3">
-                <div className="p-3 bg-secondary/80 rounded-xl text-primary shrink-0">
-                  <Square className="w-5 h-5" />
+              <div className="flex items-center gap-2 sm:gap-3">
+                <div className="p-2 sm:p-3 bg-secondary/80 rounded-xl text-primary shrink-0">
+                  <Square className="w-4 h-4 sm:w-5 sm:h-5" />
                 </div>
                 <div>
-                  <p className="text-xs text-muted-foreground">Super Area</p>
-                  <p className="font-semibold text-base text-foreground">{property.areaSqft.toLocaleString()} sq.ft</p>
+                  <p className="text-[10px] sm:text-xs text-muted-foreground">Super Area</p>
+                  <p className="font-semibold text-xs sm:text-base text-foreground leading-tight">{property.areaSqft.toLocaleString()} sq.ft</p>
                 </div>
               </div>
             </div>
@@ -247,13 +261,13 @@ export function PropertyDetailClient({ id }: { id: string }) {
             </section>
 
             {/* Amenities */}
-            <section className="space-y-5 pt-4">
-              <h2 className="text-2xl font-heading font-bold text-foreground">Amenities & Features</h2>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-y-3 gap-x-6">
+            <section className="space-y-4 pt-2 sm:pt-4">
+              <h2 className="text-xl sm:text-2xl font-heading font-bold text-foreground">Amenities & Features</h2>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
                 {property.amenities.map((amenity) => (
-                  <div key={amenity} className="flex items-center gap-2.5 text-sm text-foreground bg-secondary/30 p-2.5 rounded-xl border border-border/40">
-                    <Check className="w-4 h-4 text-primary shrink-0" />
-                    <span>{amenity}</span>
+                  <div key={amenity} className="flex items-center gap-2 text-xs sm:text-sm text-foreground bg-secondary/30 p-2 sm:p-2.5 rounded-xl border border-border/40">
+                    <Check className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary shrink-0" />
+                    <span className="truncate">{amenity}</span>
                   </div>
                 ))}
               </div>

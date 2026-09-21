@@ -73,60 +73,60 @@ export default function SellPropertyPage() {
   };
 
   return (
-    <div className="pt-28 pb-20 min-h-screen bg-background">
+    <div className="pt-24 md:pt-28 pb-28 md:pb-20 min-h-screen bg-background">
       <div className="container mx-auto px-4 md:px-8 max-w-6xl">
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
           {/* Left Side: Value Proposition */}
-          <div className="space-y-8">
+          <div className="space-y-6 md:space-y-8">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold border border-primary/20">
               <Sparkles className="w-3.5 h-3.5" /> High Net Worth Network
             </div>
 
-            <h1 className="text-4xl md:text-6xl font-heading font-bold leading-tight text-foreground">
+            <h1 className="text-2xl sm:text-4xl md:text-6xl font-heading font-bold leading-tight text-foreground">
               Sell or Lease Your Property with <span className="text-primary italic">Jaipur's Elite.</span>
             </h1>
 
-            <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+            <p className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed">
               We connect your premium residential and commercial assets with pre-qualified buyers, corporate tenants, and institutional investors. Experience total discretion, rapid turnaround, and data-backed valuation.
             </p>
             
-            <div className="space-y-6 pt-4">
+            <div className="space-y-4 sm:space-y-6 pt-2 sm:pt-4">
               {[
                 { title: "Bespoke Architectural Marketing", desc: "High-resolution 4K photography, drone walkthroughs, and targeted private campaigns." },
                 { title: "Pre-Screened Buyers & Tenants", desc: "We vet financial qualifications upfront so you never waste time on low-intent inquiries." },
                 { title: "Comparative Market Analysis", desc: "Scientific pricing strategies to maximize your asset's net realized value." },
                 { title: "Turnkey Documentation & Closing", desc: "Fiduciary supervision of sale agreements, registry, society NOCs, and possession handover." }
               ].map((item, i) => (
-                <div key={i} className="flex gap-4">
-                  <div className="mt-1 bg-primary/20 p-2 rounded-xl h-fit shrink-0 text-primary">
-                    <CheckCircle2 className="w-5 h-5" />
+                <div key={i} className="flex gap-3 sm:gap-4">
+                  <div className="mt-0.5 bg-primary/20 p-1.5 sm:p-2 rounded-xl h-fit shrink-0 text-primary">
+                    <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-base text-foreground">{item.title}</h3>
-                    <p className="text-xs md:text-sm text-muted-foreground mt-0.5 leading-relaxed">{item.desc}</p>
+                    <h3 className="font-semibold text-sm sm:text-base text-foreground">{item.title}</h3>
+                    <p className="text-xs sm:text-sm text-muted-foreground mt-0.5 leading-relaxed">{item.desc}</p>
                   </div>
                 </div>
               ))}
             </div>
 
-            <div className="p-6 rounded-2xl bg-card border border-border/60 flex items-center justify-between">
+            <div className="p-4 sm:p-6 rounded-2xl bg-card border border-border/60 flex items-center justify-between gap-3">
               <div>
-                <p className="font-semibold text-sm text-foreground">Prefer direct consultation?</p>
-                <p className="text-xs text-muted-foreground mt-0.5">Speak with our Principal Partner in Jaipur</p>
+                <p className="font-semibold text-xs sm:text-sm text-foreground">Prefer direct consultation?</p>
+                <p className="text-[11px] sm:text-xs text-muted-foreground mt-0.5">Speak with our Principal Partner in Jaipur</p>
               </div>
-              <a href="tel:+919876543210" className="flex items-center gap-2 px-4 py-2 rounded-xl bg-secondary text-xs font-semibold text-foreground hover:bg-primary/20 hover:text-primary transition-colors">
-                <Phone className="w-4 h-4 text-primary" /> +91 98765 43210
+              <a href="tel:+919876543210" className="flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-xl bg-secondary text-xs font-semibold text-foreground hover:bg-primary/20 hover:text-primary transition-colors shrink-0">
+                <Phone className="w-3.5 h-3.5 text-primary" /> +91 98765 43210
               </a>
             </div>
           </div>
 
           {/* Right Side: Lead Form */}
           <div>
-            <Card className="bg-card border-border/70 shadow-2xl relative overflow-hidden rounded-3xl">
+            <Card className="bg-card border-border/70 shadow-2xl relative overflow-hidden rounded-2xl md:rounded-3xl">
               <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary/20"></div>
               
-              <CardContent className="p-6 md:p-10">
+              <CardContent className="p-4 sm:p-6 md:p-10">
                 {submitted ? (
                   <div className="py-12 text-center space-y-4 animate-in fade-in zoom-in duration-300">
                     <div className="w-16 h-16 bg-primary/20 text-primary rounded-full flex items-center justify-center mx-auto">

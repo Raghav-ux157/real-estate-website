@@ -3,9 +3,9 @@ import { Instagram, Facebook, Linkedin, Mail, MapPin, Phone } from "lucide-react
 
 export function Footer() {
   return (
-    <footer className="bg-card border-t border-border pt-16 pb-24 md:pb-12 mt-20">
+    <footer className="bg-card border-t border-border pt-12 md:pt-16 pb-32 md:pb-12 mt-12 md:mt-20">
       <div className="container mx-auto px-4 md:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-12 md:mb-16">
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2 mb-6">

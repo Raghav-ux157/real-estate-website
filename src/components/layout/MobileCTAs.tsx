@@ -22,22 +22,26 @@ export function MobileCTAs() {
       </a>
 
       {/* Sticky Bottom Bar for Mobile only */}
-      <div className="md:hidden fixed bottom-0 left-0 w-full z-40 bg-background/95 backdrop-blur-lg border-t border-border/70 p-2.5 grid grid-cols-2 gap-2 shadow-[0_-4px_25px_rgba(0,0,0,0.4)]">
+      <div className="md:hidden fixed bottom-0 left-0 w-full z-40 bg-background/95 backdrop-blur-xl border-t border-border/70 px-3 pt-2 pb-[max(0.75rem,env(safe-area-inset-bottom))] grid grid-cols-2 gap-2.5 shadow-[0_-8px_30px_rgba(0,0,0,0.35)]">
         <a
           href="tel:+919876543210"
-          className="flex items-center justify-center gap-2 h-11 bg-secondary border border-border/60 rounded-lg text-xs font-semibold text-foreground active:scale-98 transition-transform"
+          className="flex items-center justify-center gap-2 h-12 bg-secondary/90 hover:bg-secondary border border-border/80 rounded-xl text-xs font-semibold text-foreground active:scale-95 transition-all shadow-sm"
         >
-          <Phone className="w-4 h-4 text-primary" />
-          Call Advisor
+          <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+            <Phone className="w-3.5 h-3.5" />
+          </div>
+          <span>Call Advisor</span>
         </a>
         <a
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-center gap-2 h-11 bg-[#25D366] hover:bg-[#1EBE5D] text-white rounded-lg text-xs font-semibold shadow-md active:scale-98 transition-transform"
+          className="flex items-center justify-center gap-2 h-12 bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-xl text-xs font-semibold shadow-md active:scale-95 transition-all"
         >
-          <MessageCircle className="w-4 h-4 fill-current" />
-          WhatsApp
+          <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
+            <MessageCircle className="w-3.5 h-3.5 fill-current" />
+          </div>
+          <span>WhatsApp Us</span>
         </a>
       </div>
     </>
